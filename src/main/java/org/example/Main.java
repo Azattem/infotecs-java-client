@@ -2,6 +2,7 @@ package org.example;
 
 import com.jcraft.jsch.*;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 public class Main {

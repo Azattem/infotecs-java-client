@@ -13,7 +13,6 @@ import java.util.List;
 import java.util.Scanner;
 
 public class JsonWorker {
-
     public static DataBaseSlice getData(InputStream inputStream){
         Scanner scanner = new Scanner(inputStream);
         DataBaseSlice data = new DataBaseSlice();

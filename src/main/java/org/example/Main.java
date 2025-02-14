@@ -13,11 +13,12 @@ public class Main {
         }
         ConnectionController controller;
         try {
-            controller = new ConnectionController(args[0],args[1],args[2],args[3]);
+            controller = new ConnectionController(args[0],args[1],args[2],args[3],"serverdata.json");
         } catch (JSchException e) {
             System.out.println("Connection Error");
             return;
         }
+        System.out.println(new ClientService(controller).getAll());
 
         controller.Disconnect();
     }

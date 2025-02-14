@@ -9,7 +9,7 @@ public class DataBaseSlice {
     private final Map<String,String> map= new HashMap<>();
 
     public void add(String domain,String ip){
-    map.put(domain,ip);
+        map.put(domain,ip);
     }
 
     public String getByDomain(String domain){

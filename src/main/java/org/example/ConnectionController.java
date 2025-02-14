@@ -6,8 +6,10 @@ import com.jcraft.jsch.JSchException;
 import com.jcraft.jsch.Session;
 
 public class ConnectionController {
+    private final String fileUrl;
     private final Session session;
-    ConnectionController(String host,String port,String user,String password) throws JSchException {
+    ConnectionController(String host, String port, String user, String password, String fileUrl) throws JSchException {
+        this.fileUrl = fileUrl;
         JSch jsch = new JSch();
         session = jsch.getSession(user, host,  Integer.parseInt(port));
         session.setPassword(password);
@@ -16,7 +18,6 @@ public class ConnectionController {
         session.setConfig(config);
         session.connect();
     }
-
     public void Disconnect(){
     session.disconnect();
     }
@@ -25,5 +26,8 @@ public class ConnectionController {
     }
     public boolean isConnected(){
     return session.isConnected();
+    }
+    public String getFileUrl() {
+        return fileUrl;
     }
 }

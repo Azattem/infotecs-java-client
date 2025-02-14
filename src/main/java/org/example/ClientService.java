@@ -7,9 +7,11 @@ import java.io.IOException;
 
 public class ClientService {
     private final ConnectionController controller;
+
     public ClientService(ConnectionController controller){
         this.controller = controller;
     }
+
     public String add(String domain,String ip){
         if(isIpv4(ip)){
             return "Введите коректный ip адрес";
@@ -22,44 +24,71 @@ public class ClientService {
 
         return writeData(data);
     }
+
     public String getAll(){
-    DataBaseSlice data = getData();
-    StringBuilder s = new StringBuilder();
-    for (String[] entry : data.getAsSortedArray()) {
-            s.append(entry[0]).append(" ").append(entry[1]).append("\n");
+        DataBaseSlice data = getData();
+        StringBuilder s = new StringBuilder();
+        for (String[] entry : data.getAsSortedArray()) {
+                s.append(entry[0]).append(" ").append(entry[1]).append("\n");
+        }
+            return s.toString();
     }
-        return s.toString();
-    }
+
     public String getByDomain(String Domain){
-    return null;
+        String text = getData().getByDomain(Domain);
+        if(text== null){
+            return "Данные не найдены";
+        }
+        return text;
     }
+
     public String getByIp(String ip){
-    return null;
+        String text = getData().getByIp(ip);
+        if(text== null){
+            return "Данные не найдены";
+        }
+        return text;
+
     }
+
     public String removeByDomain(String domain){
-    return null;
+        DataBaseSlice data = getData();
+        if(!data.containsDomain(domain)){
+            return "Несодержит домейн "+domain;
+        }
+        data.removeByDomain(domain);
+        writeData(data);
+        return "Ok";
     }
+
     public String removeByIp(String ip){
-    return null;
+        DataBaseSlice data = getData();
+        if(!data.containsIp(ip)){
+            return "Несодержит Ip "+ip;
+        }
+        data.removeByDomain(ip);
+        writeData(data);
+        return "Ok";
     }
+
     public static boolean isIpv4(String address){
-    if(address==null){
-        return false;
-    }
-    String[] text = address.split("\\.");
-    if(text.length != 4){
-        return false;
-    }
-        for (String s : text) {
-            try {
-                if (Integer.parseInt(s.trim()) < 0 || Integer.parseInt(s.trim()) > 255) {
+        if(address==null){
+            return false;
+        }
+        String[] text = address.split("\\.");
+        if(text.length != 4){
+            return false;
+        }
+            for (String s : text) {
+                try {
+                    if (Integer.parseInt(s.trim()) < 0 || Integer.parseInt(s.trim()) > 255) {
+                        return false;
+                    }
+                } catch (NumberFormatException e) {
                     return false;
                 }
-            } catch (NumberFormatException e) {
-                return false;
             }
-        }
-    return true;
+        return true;
     }
 
     private DataBaseSlice getData(){
@@ -69,6 +98,7 @@ public class ClientService {
             return new DataBaseSlice();
         }
     }
+
     private String writeData(DataBaseSlice data){
         try {
             JsonWorker.writeJsonFile(data,controller.getSftpChannel(),controller.getFileUrl());

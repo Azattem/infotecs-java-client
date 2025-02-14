@@ -1,13 +1,13 @@
-import org.example.Main;
+package org.example;
+
 import org.testng.Assert;
 import org.testng.annotations.*;
 
 import java.io.ByteArrayOutputStream;
-import java.io.FileNotFoundException;
 import java.io.PrintStream;
 import java.io.UnsupportedEncodingException;
 
-public class MainTest extends Assert {
+public class MainArgsProtectionTest extends Assert {
 private final PrintStream orig = System.out;
 private ByteArrayOutputStream console;
 @BeforeTest

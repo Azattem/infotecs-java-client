@@ -1,6 +1,5 @@
-import org.example.ClientService;
-import org.example.DataBaseSlice;
-import org.example.JsonWorker;
+package org.example;
+
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;

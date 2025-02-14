@@ -2,14 +2,11 @@ package org.example;
 
 import com.jcraft.jsch.*;
 
-import java.io.IOException;
-import java.util.Scanner;
-
 public class Main {
     public static void main(String[] args) {
         if(args.length!=4){
-        System.out.println("Wrong Arguments");
-        return;
+            System.out.println("Wrong Arguments");
+            return;
         }
         ConnectionController controller;
         try {
@@ -18,8 +15,7 @@ public class Main {
             System.out.println("Connection Error");
             return;
         }
-        System.out.println(new ClientService(controller).getAll());
-
-        controller.Disconnect();
+        new ConsoleRunner(System.in,new ClientService(controller));
+        controller.disconnect();
     }
 }

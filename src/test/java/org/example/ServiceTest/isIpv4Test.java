@@ -1,5 +1,7 @@
-package org.example;
+package org.example.ServiceTest;
 
+import org.example.ClientService;
+import org.example.ConnectionController;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;

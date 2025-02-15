@@ -15,9 +15,21 @@
             <class name="org.example.Connection.ConnectionMethodsTest" />
         </classes>
     </test>
+    <test name="ServiceTest">
+        <classes>
+            <class name="org.example.ServiceTest.isIpv4Test"/>
+            <class name="org.example.FileWorker.JsonWorkerGetTest"/>
+            <class name="org.example.FileWorker.JsonWorkerWriteTest"/>
+            <class name="org.example.ServiceTest.ServiceTestAdd"/>
+            <class name="org.example.ServiceTest.ServiceTestRemove"/>
+            <class name="org.example.ServiceTest.ServiceTestGetAll"/>
+            <class name="org.example.ServiceTest.ServiceTestGetByIp"/>
+            <class name="org.example.ServiceTest.ServiceTestGetByDomain"/>
+        </classes>
+    </test>
     <test name="UngroupedUnitTests">
     <classes>
-        <class name="org.example.isIpv4Test"/>
+        <class name="org.example.ConsoleRunnerTest"/>
         <class name="org.example.MainArgsProtectionTest"/>
     </classes>
     </test>

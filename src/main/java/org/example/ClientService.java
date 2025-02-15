@@ -57,7 +57,7 @@ public class ClientService {
             if (!data.containsIp(input)) {
                 return "Несодержит Ip " + input;
             }
-            data.removeByDomain(input);
+            data.removeByIp(input);
             writeData(data);
             return "Ok";
         }else {

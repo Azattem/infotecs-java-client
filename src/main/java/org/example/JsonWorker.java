@@ -58,7 +58,6 @@ public class JsonWorker {
         out.flush();
         out.close();
     }
-
     public static void writeJsonFile(DataBaseSlice dataBaseSlice,ChannelSftp channelSftp,String filename) throws JSchException, SftpException, IOException {
     channelSftp.connect();
     writeJsonFile(dataBaseSlice,channelSftp.put(filename));

@@ -3,24 +3,18 @@ package org.example.Connection;
 import com.jcraft.jsch.JSchException;
 import org.example.ConnectionController;
 import org.testng.Assert;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Parameters;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
 public class ConnectionMethodsTest extends Assert {
 private ConnectionController controller;
-private final String host ="127.0.0.1";
-private final String port ="22";
-private final String user ="azatt";
-private final String password = "2002";
-private final String fileUrl = "serverdataTest.json";
+private String fileUrl;
 @Parameters({"host","port","user","password","fileUrl"})
-@BeforeTest
+@BeforeClass
 public void setup(String host,String port,String user,String password,String fileUrl) throws JSchException {
     controller = new ConnectionController(host,port,user,password,fileUrl);
+    this.fileUrl = fileUrl;
 }
-@AfterTest
+@AfterClass
 public void cleanup(){
     if(controller.isConnected()) {
         controller.disconnect();

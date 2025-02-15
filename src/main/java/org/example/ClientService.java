@@ -13,7 +13,7 @@ public class ClientService {
     }
 
     public String add(String domain,String ip){
-        if(isIpv4(ip)){
+        if(!isIpv4(ip)){
             return "Введите коректный ip адрес";
         }
         DataBaseSlice data = getData();
@@ -51,24 +51,23 @@ public class ClientService {
 
     }
 
-    public String removeByDomain(String domain){
+    public String remove(String input){
         DataBaseSlice data = getData();
-        if(!data.containsDomain(domain)){
-            return "Несодержит домейн "+domain;
+        if(isIpv4(input)) {
+            if (!data.containsIp(input)) {
+                return "Несодержит Ip " + input;
+            }
+            data.removeByDomain(input);
+            writeData(data);
+            return "Ok";
+        }else {
+            if(!data.containsDomain(input)){
+                return "Несодержит домейн "+input;
+            }
+            data.removeByDomain(input);
+            writeData(data);
+            return "Ok";
         }
-        data.removeByDomain(domain);
-        writeData(data);
-        return "Ok";
-    }
-
-    public String removeByIp(String ip){
-        DataBaseSlice data = getData();
-        if(!data.containsIp(ip)){
-            return "Несодержит Ip "+ip;
-        }
-        data.removeByDomain(ip);
-        writeData(data);
-        return "Ok";
     }
 
     public static boolean isIpv4(String address){

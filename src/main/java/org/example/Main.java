@@ -15,7 +15,7 @@ public class Main {
             System.out.println("Connection Error");
             return;
         }
-        new ConsoleRunner(System.in,new ClientService(controller));
+        new ConsoleRunner(System.in,new ClientService(controller)).run();
         controller.disconnect();
     }
 }
